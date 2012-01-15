@@ -31,7 +31,7 @@
 #   }
 #
 # [Remember: No empty lines between comments and class definition]
-class ntp($servers="UNSET",
+class ntp($servers=undef,
           $ensure="running",
           $autoupdate=false
 ) {
@@ -48,7 +48,7 @@ class ntp($servers="UNSET",
     fail("autoupdate parameter must be true or false")
   }
 
-  if ($servers == "UNSET") {
+  if ($servers == undef) {
     $servers_real = $ntp::params::servers_default
   }
 
