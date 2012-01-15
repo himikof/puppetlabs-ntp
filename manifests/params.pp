@@ -1,5 +1,5 @@
 class ntp::params {
-  case $operatingsystem {
+  case $::operatingsystem {
     debian, ubuntu: {
       $supported       = true
       $pkg_name        = [ "ntp" ]
@@ -10,6 +10,17 @@ class ntp::params {
                            "1.debian.pool.ntp.org iburst",
                            "2.debian.pool.ntp.org iburst",
                            "3.debian.pool.ntp.org iburst", ]
+    }
+    gentoo: {
+      $supported       = true
+      $pkg_name        = [ "ntp" ]
+      $svc_name        = "ntpd"
+      $config          = "/etc/ntp.conf"
+      $config_tpl      = "ntp.conf.gentoo.erb"
+      $servers_default = [ "0.gentoo.pool.ntp.org",
+                          "1.gentoo.pool.ntp.org",
+                          "2.gentoo.pool.ntp.org",
+                          "3.gentoo.pool.ntp.org", ]
     }
     centos, redhat, oel, linux: {
       $supported       = true
