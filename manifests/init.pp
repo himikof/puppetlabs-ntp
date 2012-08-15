@@ -68,9 +68,13 @@ class ntp($servers=undef,
       require => Package['ntp'],
     }
 
+    $svc_enable = $ensure ? {
+      'running' => true,
+      'stopped' => false,
+    }
     service { "ntp":
       ensure     => $ensure,
-      enable     => true,
+      enable     => $svc_enable,
       name       => $ntp::params::svc_name,
       hasstatus  => true,
       hasrestart => true,
