@@ -70,6 +70,7 @@ class ntp($servers=undef,
 
     service { "ntp":
       ensure     => $ensure,
+      enable     => true,
       name       => $ntp::params::svc_name,
       hasstatus  => true,
       hasrestart => true,
